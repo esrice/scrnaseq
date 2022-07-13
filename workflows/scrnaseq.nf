@@ -94,6 +94,7 @@ ch_star_index = params.star_index ? file(params.star_index) : []
 
 //cellranger params
 ch_cellranger_index = params.cellranger_index ? file(params.cellranger_index) : []
+cellranger_include_introns = params.cellranger_include_introns
 
 
 workflow SCRNASEQ {
@@ -158,7 +159,8 @@ workflow SCRNASEQ {
             ch_genome_fasta,
             ch_gtf,
             ch_cellranger_index,
-            ch_fastq
+            ch_fastq,
+            cellranger_include_introns
         )
         ch_versions = ch_versions.mix(CELLRANGER_ALIGN.out.ch_versions)
     }
